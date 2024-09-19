@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter  as Router, Route, Routes, Navigate  } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -10,6 +10,15 @@ import UserRegister from './pages/UserRegister';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const TOKEN_KEY = "@airbnb-Token";
+const isAuthenticated = () => localStorage.getItem('TOKEN_KEY') !== null;
+
+const PrivateRoute = ({ children }: { children: JSX.Element }) => {
+  return isAuthenticated() ? children : <Navigate to="/login" />;
+};
+const ProtectedPage = () => <h1>Token Válido</h1>;
+
 root.render(
   <React.StrictMode>
     <Router>
@@ -17,6 +26,14 @@ root.render(
         <Route path='/' element={<App/>}/>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<UserRegister />} />
+        <Route
+          path="/app"
+          element={
+            <PrivateRoute>
+              <ProtectedPage />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Router>
   </React.StrictMode>
