@@ -1,28 +1,21 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { protectedRequest } from '../api';
 
 export default function ProtectedPage() {
   const [data, setData] = useState(null);
-  const token = localStorage.getItem('token');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:7105/api/Auth/protected', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
+        const response = await protectedRequest('/api/Auth/protected');
         setData(response.data);
       } catch (error) {
         console.error('Erro ao acessar a página protegida:', error);
       }
     };
 
-    if (token) {
-      fetchData();
-    }
-  }, [token]);
+    fetchData(); 
+  }, []);
 
   return (
     <div>

@@ -6,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import LoginPage from './pages/LoginPage';
 import UserRegister from './pages/UserRegister';
+import ProtectedPage from './components/ProtectedPage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,7 +18,6 @@ const isAuthenticated = () => localStorage.getItem('TOKEN_KEY') !== null;
 const PrivateRoute = ({ children }: { children: JSX.Element }) => {
   return isAuthenticated() ? children : <Navigate to="/login" />;
 };
-const ProtectedPage = () => <h1>Token Válido</h1>;
 
 root.render(
   <React.StrictMode>
