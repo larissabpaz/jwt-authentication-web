@@ -7,12 +7,13 @@ import reportWebVitals from './reportWebVitals';
 import LoginPage from './pages/LoginPage';
 import UserRegister from './pages/UserRegister';
 import ProtectedPage from './components/ProtectedPage';
+import { config } from './config';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const TOKEN_KEY = "@airbnb-Token";
+const TOKEN_KEY = {config};
 const isAuthenticated = () => localStorage.getItem('TOKEN_KEY') !== null;
 
 const PrivateRoute = ({ children }: { children: JSX.Element }) => {

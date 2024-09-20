@@ -1,0 +1,3 @@
+export const config = {
+    mockToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMjM0NTYiLCJ1c2VybmFtZSI6IkFsbW9kIE11cnBoeV8iLCJlbWFpbCI6ImFsbW9kQG11cnBoeS5jb20iLCJleHAiOjE2NTEzMzcxOTN9.8xZ3VjQWzX4uZ9F0V8NXrX8IXcUKb3aJ2sIgcZNjz0'
+};

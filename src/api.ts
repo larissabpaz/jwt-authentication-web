@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { config } from './config';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -19,7 +20,7 @@ const refreshToken = async () => {
   try {
     const refreshToken = localStorage.getItem('refreshToken');
     if (!refreshToken) {
-      throw new Error('Refresh token not found');
+      throw new Error('Token não encontrado');
     }
 
     const response = await axios.post(`${API_URL}/Auth/refresh`, { refreshToken });
@@ -61,7 +62,7 @@ export const protectedRequest = async (url: string) => {
 
     const response = await axios.get(`${API_URL}${url}`, {
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${config.mockToken}`
       }
     });
     return response.data;

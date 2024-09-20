@@ -8,7 +8,7 @@ export default function ProtectedPage() {
     const fetchData = async () => {
       try {
         const response = await protectedRequest('/api/Auth/protected');
-        setData(response.data);
+        setData(response.data.token);
       } catch (error) {
         console.error('Erro ao acessar a página protegida:', error);
       }
